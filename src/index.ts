@@ -8,7 +8,8 @@ const resolvers = require('./graphql/resolvers');
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
+  introspection: process.env.NODE_ENV !== 'production'
 })
 
 const MONGODB = "mongodb+srv://ncg3o:northcoders123@nc-find-and-dine.4nmddap.mongodb.net/find-and-dine?retryWrites=true&w=majority";   
