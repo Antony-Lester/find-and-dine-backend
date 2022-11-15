@@ -1,29 +1,28 @@
-import express, { Express, Request, Response } from "express";
 import * as dotenv from "dotenv";
-const Restaurant = require("./models/restaurant_schema");
-const { graphqlHTTP } = require("express-graphql");
-const schema = require("./schema/restaurantSchema");
+const { ApolloServer } = require('apollo-server');
 const mongoose = require("mongoose");
+const MONGODB =   "mongodb+srv://ncg3o:northcoders123@nc-find-and-dine.4nmddap.mongodb.net/find-and-dine?retryWrites=true&w=majority"
 
-const restaurants = Restaurant.find();
-console.log(restaurants);
+const typeDefs = require('./graphql/typeDefs');
+const resolvers = require('./graphql/resolvers');
 
-mongoose.connect(
-  "mongodb+srv://ncg3o:northcoders123@nc-find-and-dine.4nmddap.mongodb.net/fnd?retryWrites=true&w=majority"
-);
+const server = new ApolloServer({
+  typeDefs,
+  resolvers
+})
+
+dotenv.config({ path: __dirname + "/.env" });
+const port = process.env.PORT;
+
+mongoose.connect(MONGODB, {useNewUrlParser: true})
+  .then(() => {
+    console.log("MongoDB Connection Successful");
+    return server.listen({port: `${port}`});
+  })
+  .then((res) => {
+    console.log(`Server running at${res.url}`);
+  })
 
 mongoose.connection.once("open", () => {
   console.log("connected to database");
-});
-
-dotenv.config({ path: __dirname + "/.env" });
-
-const app = express();
-
-app.use("/graphql", graphqlHTTP({ schema, graphiql: true }));
-
-const port = process.env.PORT;
-
-app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running at https://localhost:${port}`);
 });
