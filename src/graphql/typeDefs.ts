@@ -30,4 +30,10 @@ module.exports = gql`
         reviewsDistribution:ReviewsDistribution
         imageUrls: [String]
     }
+
+    type Query {
+        getRestaurantByID(ID: ID!): Restaurant!
+        getRestaurants(amount: Int): [Restaurant]
+        getRestaurantsByCategory(category: String): [Restaurant]
+    }
 `
