@@ -16,7 +16,6 @@ const restaurantSchema = new Schema(
     reviewsDistribution: Object,
     imageUrls: Array,
   },
-  { _id: false }
 );
 
 module.exports = model("Restaurant", restaurantSchema);
