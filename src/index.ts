@@ -2,7 +2,6 @@ import * as dotenv from "dotenv";
 dotenv.config({ path: __dirname + "/.env" });
 const { ApolloServer } = require('apollo-server');
 const mongoose = require("mongoose");
-const MONGODB = process.env.MONGODB;   
 
 const typeDefs = require('./graphql/typeDefs');
 const resolvers = require('./graphql/resolvers');
@@ -12,6 +11,9 @@ const server = new ApolloServer({
   resolvers
 })
 
+const MONGOUSER = process.env.MONGOUSER || null;
+const MONGOPASS = process.env.MONGOPASS || null;
+const MONGODB = `mongodb+srv://${MONGOUSER}:${MONGOPASS}@nc-find-and-dine.4nmddap.mongodb.net/find-and-dine?retryWrites=true&w=majority`;   
 const port = process.env.PORT || 3000;
 
 mongoose.connect(MONGODB, {useNewUrlParser: true})
