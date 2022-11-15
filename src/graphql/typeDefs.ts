@@ -3,8 +3,8 @@ const { gql } = require('apollo-server');
 module.exports = gql`
 
     type Location {
-        lat: Int
-        lng: Int
+        lat: Float
+        lng: Float
     }
 
     type ReviewsDistribution {
@@ -34,6 +34,6 @@ module.exports = gql`
     type Query {
         getRestaurantByID(ID: ID!): Restaurant!
         getRestaurants(amount: Int): [Restaurant]
-        getRestaurantsByCategory(category: String): [Restaurant]
+        getRestaurantsByCategory(categoryName: String, amount: Int): [Restaurant]
     }
 `
