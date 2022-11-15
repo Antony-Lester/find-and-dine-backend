@@ -1,7 +1,7 @@
+dotenv.config({ path: __dirname + "/.env" });
 import * as dotenv from "dotenv";
 const { ApolloServer } = require('apollo-server');
 const mongoose = require("mongoose");
-dotenv.config({ path: __dirname + "/.env" });
 const MONGODB = process.env.MONGODB;   
 
 const typeDefs = require('./graphql/typeDefs');
