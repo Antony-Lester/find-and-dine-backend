@@ -11,9 +11,7 @@ const server = new ApolloServer({
   resolvers
 })
 
-const MONGOUSER = process.env.MONGOUSER || null;
-const MONGOPASS = process.env.MONGOPASS || null;
-const MONGODB = `mongodb+srv://${MONGOUSER}:${MONGOPASS}@nc-find-and-dine.4nmddap.mongodb.net/find-and-dine?retryWrites=true&w=majority`;   
+const MONGODB = "mongodb+srv://ncg3o:northcoders123@nc-find-and-dine.4nmddap.mongodb.net/find-and-dine?retryWrites=true&w=majority";   
 const port = process.env.PORT || 3000;
 
 mongoose.connect(MONGODB, {useNewUrlParser: true})
