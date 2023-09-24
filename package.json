@@ -18,7 +18,7 @@
     "graphql": "^15.8.0",
     "mongo-seeding": "^3.7.2",
     "mongodb": "^3.7.3",
-    "mongoose": "^6.7.2",
+    "mongoose": "^6.11.3",
     "typeorm": "^0.3.10"
   },
   "devDependencies": {
